@@ -16,7 +16,7 @@ use openssl::{
 };
 use rocket::serde::json;
 use rocket::serde::json::Value;
-use sev::firmware::guest::types::AttestationReport;
+use sev::firmware::guest::AttestationReport;
 
 pub enum SnpGeneration {
     Milan,
@@ -196,7 +196,7 @@ fn validate_chain(report: &AttestationReport, gen: SnpGeneration) -> Result<(), 
     let vcek = {
         let id = hex::encode(report.chip_id);
         let url = format!("https://kdsintf.amd.com/vcek/v1/{}/{}?blSPL={:02}&teeSPL={:02}&snpSPL={:02}&ucodeSPL={:02}",
-                gen.to_proper(), id, report.current_tcb.boot_loader, report.current_tcb.tee,
+                gen.to_proper(), id, report.current_tcb.bootloader, report.current_tcb.tee,
                 report.current_tcb.snp, report.current_tcb.microcode);
 
         /*

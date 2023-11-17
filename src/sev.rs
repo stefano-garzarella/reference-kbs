@@ -1,6 +1,6 @@
 use kbs_types::{Attestation, Challenge, SevChallenge};
 use rocket::serde::json::{json, Value};
-use sev::certs::Chain;
+use sev::certs::sev::Chain;
 use sev::launch::sev::{Measurement, Policy};
 use sev::session;
 use sev::session::{Initialized, Verified};
