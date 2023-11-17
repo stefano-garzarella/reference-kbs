@@ -218,7 +218,7 @@ fn validate_chain(report: &AttestationReport, gen: SnpGeneration) -> Result<(), 
         transfer.perform().unwrap();
         drop(transfer);
 
-        X509::from_der(buf.as_slice()).unwrap()
+        X509::from_der(buf.as_slice()).map_err(|_| AttesterError::SnpCertChainInvalid)?
     };
 
     let (ark_pkey, ask_pkey) = ca.pkeys();
